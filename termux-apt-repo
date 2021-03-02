@@ -3,7 +3,7 @@
 import datetime, hashlib, os, re, shutil, subprocess, sys, glob, argparse
 
 COMPONENTS = []
-supported_arches = ['all', 'arm', 'i686', 'aarch64', 'x86_64']
+supported_arches = ['all', 'arm64', 'amd64', 'armhf', 'i386']
 encountered_arches = set()
 hashes = ['md5', 'sha1', 'sha256', 'sha512']
 
@@ -187,7 +187,7 @@ for hash in hashes:
                   , file=release_file)
 release_file.close()
 
-if False:
+if True:
     print('Signing with gpg...')
     subprocess.check_call(['gpg --yes --pinentry-mode loopback --digest-algo SHA256 --clearsign -o '
         + distribution_path + '/InRelease ' + distribution_path + '/Release'],
